@@ -21,6 +21,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+                <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
+	        <sonar.language>java</sonar.language>
 	</properties>
 
 	<dependencies>
@@ -63,13 +66,49 @@
 		</dependency>
 
 	</dependencies>
-	
+
+<!--<distributionManagement>
+        <repository>
+            <id>course</id>
+            <url>http://192.168.1.7:8081/nexus/content/repositories/course/</url>
+        </repository>
+        <snapshotRepository>
+            <id>course</id>
+            <name>Snapshot Repository</name>
+            <url>http://192.168.1.7:8081/nexus/content/repositories/course/</url>
+        </snapshotRepository>
+</distributionManagement-->
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.7.201606060606</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+		</plugin>
 		</plugins>
 	</build>
 </project>
