@@ -6,6 +6,10 @@ pipeline {
                 sh 'mvn --file springbootwebapp/pom.xml -DskipTests clean package'
             }
         }
-        
+      stage('sonar-report') {
+            steps {
+                sh 'mvn --file springbootwebapp/pom.xml jacoco:prepare-agent install jacoco:report  -Daggregate=true -Dmaven.test.failure.ignore=true jacoco:report-aggregate org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://3.82.209.9:9000'
+            }
+        }  
     }
 }
