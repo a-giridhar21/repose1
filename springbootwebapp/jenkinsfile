@@ -8,7 +8,7 @@ pipeline {
         }
       stage('sonar-report') {
             steps {
-                sh 'mvn --file springbootwebapp/pom.xml jacoco:prepare-agent install jacoco:report  -Daggregate=true -Dmaven.test.failure.ignore=true jacoco:report-aggregate org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://54.89.89.113:9000 -Dsonar.login=66a849335bdd2f027f1f9523d9d7015796962bb8'
+                sh 'mvn --file springbootwebapp/pom.xml jacoco:prepare-agent install jacoco:report  -Daggregate=true -Dmaven.test.failure.ignore=true jacoco:report-aggregate org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://3.83.219.85:9000 -Dsonar.login=66a849335bdd2f027f1f9523d9d7015796962bb8'
             }
          }  
          stage('deploy') {
